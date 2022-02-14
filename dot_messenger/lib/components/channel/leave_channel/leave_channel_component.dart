@@ -1,7 +1,6 @@
 import 'package:dot_messenger/components/channel/leave_channel/bloc/leave_channel_bloc.dart';
 import 'package:dot_messenger/configs/constants.dart';
 import 'package:dot_messenger/models/channel_model.dart';
-import 'package:dot_messenger/screens/channels_screen.dart';
 import 'package:dot_messenger/widgets/buttons/danger_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,13 +30,13 @@ class LeaveChannelComponent extends StatelessWidget {
             if (state is LeaveChannelLoadingState) {}
 
             if (state is LeaveChannelSuccessState) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ChannelsScreen(),
-                ),
-                (route) => false,
-              );
+              // Navigator.pushAndRemoveUntil(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const ChannelsScreen(),
+              //   ),
+              //   (route) => false,
+              // );
             }
           },
           child: TextButton(

@@ -6,14 +6,9 @@ import 'package:dot_messenger/models/channel_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChannelsScreen extends StatefulWidget {
-  const ChannelsScreen({Key? key}) : super(key: key);
+class ChannelsPageView extends StatelessWidget {
+  const ChannelsPageView({Key? key}) : super(key: key);
 
-  @override
-  State<ChannelsScreen> createState() => _ChannelScreenState();
-}
-
-class _ChannelScreenState extends State<ChannelsScreen> {
   void _modalBottomSheet(
     BuildContext context,
   ) {

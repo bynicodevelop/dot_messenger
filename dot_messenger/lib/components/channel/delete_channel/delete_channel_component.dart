@@ -1,7 +1,6 @@
 import 'package:dot_messenger/components/channel/delete_channel/bloc/delete_channel_bloc.dart';
 import "package:dot_messenger/configs/constants.dart";
 import 'package:dot_messenger/models/channel_model.dart';
-import 'package:dot_messenger/screens/channels_screen.dart';
 import 'package:dot_messenger/widgets/buttons/danger_button.dart';
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter/material.dart";
@@ -32,13 +31,13 @@ class DeleteChannelComponent extends StatelessWidget {
               if (state is DeleteChannelLoadingState) {}
 
               if (state is DeleteChannelSuccessState) {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ChannelsScreen(),
-                  ),
-                  (route) => false,
-                );
+                // Navigator.pushAndRemoveUntil(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const ChannelsScreen(),
+                //   ),
+                //   (route) => false,
+                // );
               }
             },
             child: TextButton(

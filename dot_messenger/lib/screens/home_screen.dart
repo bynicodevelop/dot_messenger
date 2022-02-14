@@ -1,44 +1,30 @@
-import 'package:dot_messenger/screens/channels_screen.dart';
-import 'package:dot_messenger/screens/settings_screen.dart';
+import 'package:dot_messenger/components/main_navigation_component.dart';
+import 'package:dot_messenger/screens/page_views/channels_pageview.dart';
+import 'package:dot_messenger/screens/page_views/settings_pageview.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dot Messenger'),
-        actions: [
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.plus),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ChannelsScreen(),
-              ),
-            ),
-          ),
+      body: PageView(
+        controller: _pageController,
+        children: const <Widget>[
+          ChannelsPageView(),
+          SettingsPageView(),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text("Home"),
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SettingsScreen(),
-                ),
-              ),
-              child: const Text("Settings"),
-            )
-          ],
-        ),
+      bottomNavigationBar: MainNavigationComponent(
+        pageController: _pageController,
       ),
     );
   }

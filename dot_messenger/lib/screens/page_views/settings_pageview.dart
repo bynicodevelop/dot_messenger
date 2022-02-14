@@ -9,8 +9,8 @@ const List<Map<String, dynamic>> menus = [
   }
 ];
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+class SettingsPageView extends StatelessWidget {
+  const SettingsPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
