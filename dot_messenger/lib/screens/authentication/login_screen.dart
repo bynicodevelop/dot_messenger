@@ -1,3 +1,4 @@
+import 'package:dot_messenger/components/authentication/login_form/login_form_component.dart';
 import 'package:dot_messenger/components/forms/buttons/submit_button.dart';
 import 'package:dot_messenger/components/forms/inputs/email_input.dart';
 import 'package:dot_messenger/components/forms/inputs/password_input.dart';
@@ -33,192 +34,126 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginBloc, LoginState>(
-      listener: (context, state) {
-        if (state is LoginLoadingState) {
-          return;
-        }
-
-        if (state is LoginFailureState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Indentifiants incorrects"),
-              backgroundColor: Colors.red,
-            ),
-          );
-          return;
-        }
-      },
-      builder: (context, state) {
-        return Scaffold(
-          body: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: kDefaultPadding / 2,
-            ),
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: kDefaultPadding / 2,
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Connexion",
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+                Row(
                   children: [
-                    Text(
-                      "Connexion",
-                      style: Theme.of(context).textTheme.headline1,
-                    ),
-                    Row(
-                      children: [
-                        const Text("Ou"),
-                        TextButton(
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const RegisterScreen(),
-                            ),
-                          ),
-                          child: const Text("Créer un compte"),
+                    const Text("Ou"),
+                    TextButton(
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterScreen(),
                         ),
-                      ],
-                    ),
-                    EmailInput(
-                      controller: _emailController,
-                    ),
-                    PasswordInput(
-                      controller: _passwordController,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton(
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const ForgottenPasswordScreen(),
-                            ),
-                          ),
-                          child: const Text("Mot de passe oublié ?"),
-                        ),
-                      ],
-                    ),
-                    SubmitButton(
-                      label: "Se connecter",
-                      onPressed: (state is LoginLoadingState)
-                          ? null
-                          : () {
-                              if (_emailController.text.isEmpty &&
-                                  _passwordController.text.isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                        "Veuillez remplir tous les champs"),
-                                  ),
-                                );
-
-                                return null;
-                              }
-
-                              context.read<LoginBloc>().add(
-                                    OnLoginWithEmailPasswordEvent(
-                                      email: _emailController.text,
-                                      password: _passwordController.text,
-                                    ),
-                                  );
-                            },
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: kDefaultPadding / 2,
-                        bottom: kDefaultPadding,
                       ),
-                      child: Row(
-                        children: [
-                          const Expanded(
-                            child: Divider(
-                              color: Colors.grey,
-                              thickness: 1,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: kDefaultPadding / 2,
-                            ),
-                            child: Text(
-                              "Ou continuer avec",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                    color: Colors.grey[700],
-                                  ),
-                            ),
-                          ),
-                          const Expanded(
-                            child: Divider(
-                              color: Colors.grey,
-                              thickness: 1,
-                            ),
-                          ),
-                        ],
-                      ),
+                      child: const Text("Créer un compte"),
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            height: kDefaultPadding * 2,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        right: kDefaultPadding / 3),
-                                    child: FaIcon(
-                                      FontAwesomeIcons.facebook,
-                                      size: kDefaultPadding,
-                                    ),
-                                  ),
-                                  Text("Facebook"),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: kDefaultPadding / 2,
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            height: kDefaultPadding * 2,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      right: kDefaultPadding / 3,
-                                    ),
-                                    child: FaIcon(
-                                      FontAwesomeIcons.google,
-                                      size: kDefaultPadding,
-                                    ),
-                                  ),
-                                  Text("Google"),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    )
                   ],
                 ),
-              ),
+                const LoginFormComponent(),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: kDefaultPadding / 2,
+                    bottom: kDefaultPadding,
+                  ),
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        child: Divider(
+                          color: Colors.grey,
+                          thickness: 1,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: kDefaultPadding / 2,
+                        ),
+                        child: Text(
+                          "Ou continuer avec",
+                          style:
+                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                                    color: Colors.grey[700],
+                                  ),
+                        ),
+                      ),
+                      const Expanded(
+                        child: Divider(
+                          color: Colors.grey,
+                          thickness: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: kDefaultPadding * 2,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(right: kDefaultPadding / 3),
+                                child: FaIcon(
+                                  FontAwesomeIcons.facebook,
+                                  size: kDefaultPadding,
+                                ),
+                              ),
+                              Text("Facebook"),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: kDefaultPadding / 2,
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        height: kDefaultPadding * 2,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  right: kDefaultPadding / 3,
+                                ),
+                                child: FaIcon(
+                                  FontAwesomeIcons.google,
+                                  size: kDefaultPadding,
+                                ),
+                              ),
+                              Text("Google"),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
