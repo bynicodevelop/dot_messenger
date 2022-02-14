@@ -1,21 +1,23 @@
-import 'package:dot_messenger/components/authentication/login_form/bloc/login_form_bloc.dart';
+import 'package:dot_messenger/components/authentication/register_form/bloc/register_form_bloc.dart';
 import 'package:dot_messenger/components/forms/buttons/submit_button.dart';
 import 'package:dot_messenger/components/forms/inputs/email_input.dart';
 import 'package:dot_messenger/components/forms/inputs/password_input.dart';
+import 'package:dot_messenger/components/forms/inputs/text_input.dart';
 import 'package:dot_messenger/configs/constants.dart';
-import 'package:dot_messenger/screens/authentication/forgotten_password_screen.dart';
+import 'package:dot_messenger/screens/home_screen.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
-class LoginFormComponent extends StatefulWidget {
-  const LoginFormComponent({Key? key}) : super(key: key);
+class RegisterFormComponent extends StatefulWidget {
+  const RegisterFormComponent({Key? key}) : super(key: key);
 
   @override
-  State<LoginFormComponent> createState() => _LoginFormComponentState();
+  State<RegisterFormComponent> createState() => _RegisterFormComponentState();
 }
 
-class _LoginFormComponentState extends State<LoginFormComponent> {
+class _RegisterFormComponentState extends State<RegisterFormComponent> {
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -24,24 +26,35 @@ class _LoginFormComponentState extends State<LoginFormComponent> {
     super.initState();
 
     if (kDebugMode) {
-      _emailController.text = "john@domain.tld";
+      _nameController.text = "jeff";
+      _emailController.text = "jeff@domain.tld";
       _passwordController.text = "123456";
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginBloc, LoginState>(
+    return BlocConsumer<RegisterFormBloc, RegisterFormState>(
       listener: (context, state) {
-        if (state is LoginLoadingState) {
+        if (state is RegisterFormLoadingState) {
           return;
         }
 
-        if (state is LoginFailureState) {
+        if (state is RegisterFormSuccessState) {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+            ),
+            (route) => false,
+          );
+        }
+
+        if (state is RegisterFormFailureState) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text(
-                "Identiants incorrects",
+                "Vous ne pouvez vous enregistrer avec ces identifiants.",
               ),
               backgroundColor: kDangerColor,
             ),
@@ -52,29 +65,19 @@ class _LoginFormComponentState extends State<LoginFormComponent> {
       builder: (context, state) {
         return Column(
           children: [
+            TextInput(
+              label: "Nom",
+              controller: _nameController,
+            ),
             EmailInput(
               controller: _emailController,
             ),
             PasswordInput(
               controller: _passwordController,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ForgottenPasswordScreen(),
-                    ),
-                  ),
-                  child: const Text("Mot de passe oublié ?"),
-                ),
-              ],
-            ),
             SubmitButton(
-              label: "Se connecter".toUpperCase(),
-              onPressed: (state is LoginLoadingState)
+              label: "Créer un compte".toUpperCase(),
+              onPressed: (state is RegisterFormLoadingState)
                   ? null
                   : () {
                       if (_emailController.text.isEmpty &&
@@ -88,8 +91,9 @@ class _LoginFormComponentState extends State<LoginFormComponent> {
                         return null;
                       }
 
-                      context.read<LoginBloc>().add(
-                            OnLoginWithEmailPasswordEvent(
+                      context.read<RegisterFormBloc>().add(
+                            OnRegisterFormEvent(
+                              name: _nameController.text,
                               email: _emailController.text,
                               password: _passwordController.text,
                             ),

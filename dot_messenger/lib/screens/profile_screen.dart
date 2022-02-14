@@ -1,6 +1,5 @@
 import 'package:dot_messenger/components/authenticatation_guard.dart';
-import 'package:dot_messenger/services/login/login_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dot_messenger/components/authentication/logout_button/logout_button_component.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -13,13 +12,8 @@ class ProfileScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Profile'),
         ),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () => context.read<LoginBloc>().add(
-                  OnLogoutEvent(),
-                ),
-            child: const Text("Déconnexion"),
-          ),
+        body: const Center(
+          child: LogoutButtonComponent(),
         ),
       ),
     );

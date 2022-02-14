@@ -1,4 +1,4 @@
-part of 'login_bloc.dart';
+part of 'login_form_bloc.dart';
 
 abstract class LoginState extends Equatable {
   const LoginState();
@@ -12,8 +12,6 @@ class LoginInitialState extends LoginState {}
 class LoginLoadingState extends LoginState {}
 
 class LoginSuccessState extends LoginState {}
-
-class LogoutSuccessState extends LoginState {}
 
 class LoginFailureState extends LoginState {
   final String errorMessage;

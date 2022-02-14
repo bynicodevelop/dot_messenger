@@ -3,8 +3,8 @@ import 'package:dot_messenger/exceptions/authentication_exception.dart';
 import 'package:dot_messenger/repositories/authentication_respository.dart';
 import 'package:equatable/equatable.dart';
 
-part 'login_event.dart';
-part 'login_state.dart';
+part 'login_form_event.dart';
+part 'login_form_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthenticationRepository authenticationRepository;
@@ -22,20 +22,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
 
         emit(LoginSuccessState());
-      } on AuthenticationException catch (e) {
-        emit(LoginFailureState(
-          errorMessage: e.toString(),
-        ));
-      }
-    });
-
-    on<OnLogoutEvent>((event, emit) async {
-      emit(LoginLoadingState());
-
-      try {
-        await authenticationRepository.signOut();
-
-        emit(LogoutSuccessState());
       } on AuthenticationException catch (e) {
         emit(LoginFailureState(
           errorMessage: e.toString(),

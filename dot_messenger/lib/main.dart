@@ -34,10 +34,12 @@ Future<void> main() async {
   await FirebaseFirestore.instance.terminate();
   await FirebaseFirestore.instance.clearPersistence();
 
-  runApp(App(
-    authentication: FirebaseAuth.instance,
-    firestore: FirebaseFirestore.instance,
-  ));
+  runApp(
+    App(
+      authentication: FirebaseAuth.instance,
+      firestore: FirebaseFirestore.instance,
+    ),
+  );
 }
 
 class App extends StatelessWidget {

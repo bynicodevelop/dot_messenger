@@ -1,4 +1,4 @@
-part of 'login_bloc.dart';
+part of 'login_form_bloc.dart';
 
 abstract class LoginEvent extends Equatable {
   const LoginEvent();
@@ -22,5 +22,3 @@ class OnLoginWithEmailPasswordEvent extends LoginEvent {
         password,
       ];
 }
-
-class OnLogoutEvent extends LoginEvent {}
