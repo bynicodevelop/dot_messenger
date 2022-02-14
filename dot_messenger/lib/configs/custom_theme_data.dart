@@ -60,6 +60,11 @@ class CustomThemeData {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           primary: kDefautColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              kDefaultPadding / 3,
+            ),
+          ),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
