@@ -1,0 +1,18 @@
+{
+  "users": {
+    "user1": {
+      "channel": {
+        "canal1": {
+          "canalRef": "channel/canal1"
+        }
+      }
+    }
+  },
+  "channel": {
+    "canal1": {
+      "title": "Canal 1",
+      "userRef": "users/user1",
+      "contents": []
+    }
+  }
+}
