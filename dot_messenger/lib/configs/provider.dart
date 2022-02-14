@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dot_messenger/components/authentication/forgotten_form/bloc/forgotten_form_bloc.dart';
 import 'package:dot_messenger/components/authentication/login_form/bloc/login_form_bloc.dart';
 import 'package:dot_messenger/components/authentication/logout_button/bloc/logout_bloc.dart';
 import 'package:dot_messenger/components/authentication/register_form/bloc/register_form_bloc.dart';
@@ -67,6 +68,11 @@ class Provider extends StatelessWidget {
         ),
         BlocProvider<LogoutBloc>(
           create: (context) => LogoutBloc(
+            authenticationRepository: authenticationRepository,
+          ),
+        ),
+        BlocProvider<ForgottenFormBloc>(
+          create: (context) => ForgottenFormBloc(
             authenticationRepository: authenticationRepository,
           ),
         ),

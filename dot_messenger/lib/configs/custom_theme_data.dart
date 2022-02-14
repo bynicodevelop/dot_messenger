@@ -43,7 +43,7 @@ class CustomThemeData {
         ),
         headline1: const TextStyle(
           color: Colors.black,
-          fontSize: kDefaultFontSize * 1.5,
+          fontSize: kDefaultFontSize * 1.9,
           fontWeight: FontWeight.w400,
         ),
         headline6: const TextStyle(
@@ -55,6 +55,11 @@ class CustomThemeData {
           color: Colors.black,
           fontSize: kDefaultFontSize,
           fontWeight: FontWeight.w400,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          primary: kDefautColor,
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(

@@ -68,7 +68,13 @@ class _LoginFormComponentState extends State<LoginFormComponent> {
                       builder: (context) => const ForgottenPasswordScreen(),
                     ),
                   ),
-                  child: const Text("Mot de passe oublié ?"),
+                  child: Text(
+                    "Mot de passe oublié ?",
+                    style: Theme.of(context).textTheme.caption!.copyWith(
+                          fontSize: kDefaultFontSize,
+                          fontStyle: FontStyle.normal,
+                        ),
+                  ),
                 ),
               ],
             ),

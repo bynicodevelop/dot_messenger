@@ -1,5 +1,6 @@
 import 'package:dot_messenger/components/authentication/register_form/register_form_component.dart';
 import 'package:dot_messenger/configs/constants.dart';
+import 'package:dot_messenger/layouts/authentication_layout.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -9,30 +10,31 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kDefaultPadding / 2,
-        ),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          padding: const EdgeInsets.symmetric(
+            horizontal: kDefaultPadding / 2,
+          ),
+          child: AuthenticationLayout(
+            heading: Text(
+              "Créer un compte",
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            form: Column(
               children: [
-                Text(
-                  "Créer un compte",
-                  style: Theme.of(context).textTheme.headline1,
-                ),
                 const RegisterFormComponent(),
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("Connexion".toLowerCase()),
+                  child: Text(
+                    "Connexion".toUpperCase(),
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                          letterSpacing: .8,
+                        ),
+                  ),
                 )
               ],
             ),
-          ),
-        ),
-      ),
+          )),
     );
   }
 }
