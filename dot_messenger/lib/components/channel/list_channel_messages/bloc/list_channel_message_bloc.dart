@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dot_messenger/models/channel_model.dart';
 import 'package:dot_messenger/models/message_model.dart';
 import 'package:dot_messenger/repositories/channel_message_repository.dart';
-import 'package:dot_messenger/repositories/channel_repository.dart';
 import 'package:equatable/equatable.dart';
 
 part 'list_channel_message_event.dart';

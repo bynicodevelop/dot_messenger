@@ -1,8 +1,6 @@
 import 'package:dot_messenger/components/channel/delete_channel/delete_channel_component.dart';
 import 'package:dot_messenger/components/channel/leave_channel/leave_channel_component.dart';
-import 'package:dot_messenger/components/user_component.dart';
 import 'package:dot_messenger/models/channel_model.dart';
-import 'package:dot_messenger/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class ChannelSettingComponent extends StatelessWidget {
