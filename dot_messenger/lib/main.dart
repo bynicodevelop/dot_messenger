@@ -7,6 +7,7 @@ import 'package:dot_messenger/firebase_options.dart';
 import 'package:dot_messenger/screens/bootstrap_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,11 @@ Future<void> main() async {
       host,
       8080,
     );
+
+    await FirebaseStorage.instance.useStorageEmulator(
+      host,
+      9199,
+    );
   }
 
   await FirebaseFirestore.instance.terminate();
@@ -38,6 +44,7 @@ Future<void> main() async {
     App(
       authentication: FirebaseAuth.instance,
       firestore: FirebaseFirestore.instance,
+      storage: FirebaseStorage.instance,
     ),
   );
 }
@@ -45,11 +52,13 @@ Future<void> main() async {
 class App extends StatelessWidget {
   final FirebaseAuth authentication;
   final FirebaseFirestore firestore;
+  final FirebaseStorage storage;
 
   const App({
     Key? key,
     required this.authentication,
     required this.firestore,
+    required this.storage,
   }) : super(key: key);
 
   @override
@@ -57,6 +66,7 @@ class App extends StatelessWidget {
     return Provider(
       authentication: authentication,
       firestore: firestore,
+      storage: storage,
       child: MaterialApp(
         title: 'Dot Messenger',
         theme: CustomThemeData.defaultTheme,

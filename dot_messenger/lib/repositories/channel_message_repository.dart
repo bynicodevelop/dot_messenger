@@ -1,4 +1,5 @@
 import "package:cloud_firestore/cloud_firestore.dart";
+import 'package:dot_messenger/models/channel_model.dart';
 import "package:dot_messenger/models/message_model.dart";
 import "package:firebase_auth/firebase_auth.dart";
 
@@ -10,6 +11,14 @@ class ChannelMessageRepository {
     required this.firestore,
     required this.authentication,
   });
+
+  Stream<ChannelModel> channel(String channelId) =>
+      firestore.collection('channels').doc(channelId).snapshots().map(
+            (snapshot) => ChannelModel.fromJson({
+              'id': snapshot.id,
+              ...snapshot.data()!,
+            }),
+          );
 
   Stream<List<MessageModel>> messages(String channelId) => firestore
       .collection("channels")

@@ -55,6 +55,18 @@ class ChannelRepository {
     );
   }
 
+  Future<void> updateChannel(
+    Map<String, dynamic> canal,
+    String channelId,
+  ) async {
+    await firestore
+        .collection("users")
+        .doc(authentication.currentUser!.uid)
+        .collection("channels")
+        .doc(channelId)
+        .update(canal);
+  }
+
   Future<void> deleteChannel(String channelId) async {
     await firestore
         .collection("users")

@@ -23,7 +23,7 @@ class ChannelModel extends Equatable {
   factory ChannelModel.fromJson(Map<String, dynamic> json) => ChannelModel(
         id: json["id"],
         title: json["title"],
-        image: json["image"],
+        image: json["image"] ?? "",
         lastMessage: json["lastMessage"] ?? "",
         isPersonal: json["isPersonal"] ?? false,
         lastUpdated: Timestamp.fromMicrosecondsSinceEpoch(

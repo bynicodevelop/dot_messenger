@@ -23,18 +23,29 @@ class _SendMessageChannelComponentState
 
   @override
   Widget build(BuildContext context) {
-    return TextEditingForm(
-      controller: _textEditingController,
-      onSend: () {
-        context.read<SendMessageChannelBloc>().add(
-              OnSendMessageEvent(
-                channelModel: widget.channelModel,
-                content: {
-                  "content": _textEditingController.text,
-                },
-              ),
-            );
+    return BlocListener<SendMessageChannelBloc, SendMessageChannelState>(
+      listener: (context, state) {
+        if (state is SendMessageLoadingState) {
+          return;
+        }
+
+        if (state is SendMessageSuccessState) {
+          _textEditingController.clear();
+        }
       },
+      child: TextEditingForm(
+        controller: _textEditingController,
+        onSend: () {
+          context.read<SendMessageChannelBloc>().add(
+                OnSendMessageEvent(
+                  channelModel: widget.channelModel,
+                  content: {
+                    "content": _textEditingController.text,
+                  },
+                ),
+              );
+        },
+      ),
     );
   }
 }

@@ -31,6 +31,19 @@ exports.onChannelCreated = functions.firestore
       });
   });
 
+exports.onChannelUpdated = functions.firestore
+  .document("users/{userId}/channels/{channelId}")
+  .onUpdate(async (change, context) => {
+    const { image, title } = change.after.data();
+
+    const { channelId } = context.params;
+
+    await admin.firestore().doc(`channels/${channelId}`).update({
+      image,
+      title,
+    });
+  });
+
 exports.onChannelDeleted = functions.firestore
   .document("users/{userId}/channels/{channelId}")
   .onDelete(async (snapshot, context) => {

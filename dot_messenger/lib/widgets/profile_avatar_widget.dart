@@ -1,16 +1,18 @@
 import 'package:dot_messenger/configs/constants.dart';
 import 'package:flutter/material.dart';
 
-class ProfileAvatar extends StatefulWidget {
+class ProfileAvatarWidget extends StatefulWidget {
   final bool? isOnline;
   final String? url;
   final String? label;
   final double? size;
   final bool disableOnline;
+  final bool isEditing;
 
-  const ProfileAvatar({
+  const ProfileAvatarWidget({
     Key? key,
     this.isOnline = false,
+    this.isEditing = false,
     this.disableOnline = false,
     this.url,
     this.label,
@@ -18,15 +20,16 @@ class ProfileAvatar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ProfileAvatar> createState() => _ProfileAvatarState();
+  State<ProfileAvatarWidget> createState() => _ProfileAvatarState();
 }
 
-class _ProfileAvatarState extends State<ProfileAvatar> {
+class _ProfileAvatarState extends State<ProfileAvatarWidget> {
   @override
   Widget build(BuildContext context) {
     return !widget.disableOnline
         ? CircleAvatar(
             radius: widget.size,
+            backgroundColor: kDefautColor,
             backgroundImage: (widget.url ?? "").isNotEmpty
                 ? NetworkImage(widget.url!)
                 : null,
@@ -49,6 +52,7 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
               radius: widget.size! / 1.35,
               child: CircleAvatar(
                 radius: widget.size! / 1.47,
+                backgroundColor: kDefautColor,
                 backgroundImage:
                     widget.url != null ? NetworkImage(widget.url!) : null,
                 child: widget.url != null

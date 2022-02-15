@@ -67,6 +67,10 @@ class CustomThemeData {
           ),
         ),
       ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedItemColor: kDefautColor,
+        unselectedItemColor: kDefautColor.withOpacity(.6),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         contentPadding: const EdgeInsets.all(kDefaultPadding / 1.2),
         labelStyle: TextStyle(

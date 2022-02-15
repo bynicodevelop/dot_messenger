@@ -1,5 +1,5 @@
 import 'package:dot_messenger/screens/single_channel_screen.dart';
-import 'package:dot_messenger/components/profile_avatar.dart';
+import 'package:dot_messenger/widgets/profile_avatar_widget.dart';
 import 'package:dot_messenger/configs/constants.dart';
 import 'package:dot_messenger/models/channel_model.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,7 @@ class ListChannelComponent extends StatelessWidget {
             right: kDefaultPadding * 1.2,
             left: kDefaultPadding / 2,
           ),
-          leading: ProfileAvatar(
+          leading: ProfileAvatarWidget(
             label: channelModel.title,
             url: channelModel.image,
           ),
