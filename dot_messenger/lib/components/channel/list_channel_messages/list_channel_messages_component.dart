@@ -2,6 +2,7 @@ import 'package:dot_messenger/components/channel/list_channel_messages/bloc/list
 import 'package:dot_messenger/configs/constants.dart';
 import 'package:dot_messenger/models/channel_model.dart';
 import 'package:dot_messenger/models/message_model.dart';
+import 'package:dot_messenger/widgets/messages/item_message_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,7 +38,9 @@ class ListChannelMessageComponent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Padding(
-                  padding: EdgeInsets.only(bottom: kDefaultPadding / 2),
+                  padding: EdgeInsets.only(
+                    bottom: kDefaultPadding / 2,
+                  ),
                   child: Icon(Icons.info_outline),
                 ),
                 Padding(
@@ -51,13 +54,17 @@ class ListChannelMessageComponent extends StatelessWidget {
           );
         }
 
-        return ListView.builder(
+        return ListView.separated(
           itemCount: messages.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(messages[index].content),
+            return ItemMessagesWidget(
+              channelModel: channelModel,
+              messageModel: messages[index],
             );
           },
+          separatorBuilder: (context, index) => const SizedBox(
+            height: kDefaultPadding / 2,
+          ),
         );
       },
     );
