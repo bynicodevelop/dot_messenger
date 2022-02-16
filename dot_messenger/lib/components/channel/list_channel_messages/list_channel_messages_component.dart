@@ -2,7 +2,7 @@ import 'package:dot_messenger/components/channel/list_channel_messages/bloc/list
 import 'package:dot_messenger/configs/constants.dart';
 import 'package:dot_messenger/models/channel_model.dart';
 import 'package:dot_messenger/models/message_model.dart';
-import 'package:dot_messenger/widgets/messages/item_message_widget.dart';
+import 'package:dot_messenger/widgets/messages/item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

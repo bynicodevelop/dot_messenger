@@ -13,30 +13,28 @@ class AuthenticationLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kDefaultPadding / 2,
-        ),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: kDefaultPadding,
-                  ),
-                  child: heading,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: kDefaultPadding,
+      ),
+      child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: kDefaultPadding,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: kDefaultPadding,
-                  ),
-                  child: form,
+                child: heading,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: kDefaultPadding,
                 ),
-              ],
-            ),
+                child: form,
+              ),
+            ],
           ),
         ),
       ),

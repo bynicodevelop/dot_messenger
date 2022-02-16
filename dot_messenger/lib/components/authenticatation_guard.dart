@@ -16,10 +16,11 @@ class AuthenticationGuard extends StatelessWidget {
     return BlocListener<LogoutBloc, LogoutState>(
       listener: (context, state) {
         if (state is LogoutSuccessState) {
-          Navigator.of(context).pushReplacement(
+          Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (context) => const BootstrapScreen(),
             ),
+            (route) => false,
           );
         }
       },

@@ -30,52 +30,47 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kDefaultPadding / 2,
-        ),
-        child: AuthenticationLayout(
-          heading: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: kDefaultPadding / 2,
-                ),
-                child: Text(
-                  "Connexion",
-                  style: Theme.of(context).textTheme.headline1,
-                ),
+      body: AuthenticationLayout(
+        heading: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: kDefaultPadding / 2,
               ),
-              RichText(
-                text: TextSpan(
-                  text: "Ou",
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        color: Colors.grey[800],
-                      ),
-                  children: [
-                    TextSpan(
-                      text: " créer un compte",
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            color: kDefautColor,
-                          ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const RegisterScreen(),
-                              ),
-                            ),
-                      // ,
+              child: Text(
+                "Connexion",
+                style: Theme.of(context).textTheme.headline1,
+              ),
+            ),
+            RichText(
+              text: TextSpan(
+                text: "Ou",
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      color: Colors.grey[800],
                     ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          form: const LoginFormComponent(),
+                children: [
+                  TextSpan(
+                    text: " créer un compte",
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                          color: kDefautColor,
+                        ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterScreen(),
+                            ),
+                          ),
+                    // ,
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
+        form: const LoginFormComponent(),
       ),
     );
   }
